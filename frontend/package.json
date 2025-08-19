@@ -13,7 +13,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "sass": "^1.90.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
