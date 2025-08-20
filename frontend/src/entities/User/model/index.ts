@@ -1,11 +1,5 @@
 import { create } from "zustand";
-
-interface User {
-  email: string;
-  nickname: string;
-  role: "guest" | "user" | "admin";
-  tokens: number;
-}
+import { User } from "./types";
 
 interface UserStore {
   user: User | null;
