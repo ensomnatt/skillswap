@@ -3,7 +3,7 @@ import HeroSection from "@/widgets/HeroSection";
 import HowItWorks from "@/widgets/HowItWorks";
 import PopularSkills from "@/widgets/PopularSkills";
 
-export default function Landing() {
+export default function HomePage() {
   return (
     <>
       <HeroSection />

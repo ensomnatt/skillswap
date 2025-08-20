@@ -1,7 +1,7 @@
-import Landing from "@/views/Landing";
+import HomePage from "@/views/HomePage";
 
 export default function Home() {
   return (
-    <Landing />
+    <HomePage />
   );
 }

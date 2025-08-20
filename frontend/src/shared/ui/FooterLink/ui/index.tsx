@@ -1,9 +1,5 @@
 import Link from "next/link";
-
-type Props = {
-  label: string;
-  href: string;
-}
+import { FooterLinkType as Props } from "@/shared/types/FooterLink";
 
 export default function FooterLink({ label, href }: Props) {
   return (
