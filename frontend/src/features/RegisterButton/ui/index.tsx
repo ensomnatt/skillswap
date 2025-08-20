@@ -1,10 +1,15 @@
 import Link from "next/link";
 import Button from "@/shared/ui/Button";
 
-export default function RegisterButton() {
+type Props = {
+  label: string;
+  className?: string;
+}
+
+export default function RegisterButton({ label, className }: Props) {
   return (
     <Link href="/register">
-      <Button label="Регистрация" />
+      <Button label={label} className={className} />
     </Link>
   );
 }
