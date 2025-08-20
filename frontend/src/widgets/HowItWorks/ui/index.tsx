@@ -2,9 +2,9 @@ import Card from "@/widgets/Card";
 
 export default function HowItWorks() {
   return (
-    <section className="h-[400] flex flex-col items-center text-center">
+    <section className="min-h-[400] flex flex-col items-center text-center">
       <h1 className="mb-[40] text-3xl font-bold">Как это работает?</h1>
-      <div className="flex justify-between items-center gap-[24]">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-[24]">
         <Card
           title="Найди наставника"
           description="Выбирай опытного наставника по интересующему навыку и изучай новый материал"

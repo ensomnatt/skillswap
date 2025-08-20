@@ -3,9 +3,9 @@ import Card from "@/widgets/Card";
 
 export default function PopularSkills() {
   return (
-    <section className="h-[400] flex flex-col items-center text-center">
+    <section className="min-h-[400] flex flex-col items-center text-center pt-10 md:pt-0">
       <h1 className="mb-[40] text-3xl font-bold">Популярные навыки</h1>
-      <div className="flex justify-between items-center gap-[24]">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-[24]">
         <Card
           title="Javascript"
           description="Учись создавать интерактивные веб-приложения и сайты"
