@@ -1,7 +1,4 @@
-type Props = {
-  title: string;
-  description: React.ReactNode | string;
-}
+import { CardType as Props } from "@/shared/types/Card";
 
 export default function Card({ title, description }: Props) {
   return (

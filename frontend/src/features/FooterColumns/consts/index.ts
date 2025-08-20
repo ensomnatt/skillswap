@@ -1,6 +1,6 @@
 import { FooterColumnType } from "@/shared/types/FooterColumn";
 
-export const footerColumns: FooterColumnType[] = [
+export const FOOTER_COLUMNS: FooterColumnType[] = [
   {
     title: "Контакты",
     links: [
@@ -20,4 +20,4 @@ export const footerColumns: FooterColumnType[] = [
       { label: "Перейти", href: "#" },
     ],
   },
-];
+] as const;
