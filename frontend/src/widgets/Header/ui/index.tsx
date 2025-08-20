@@ -11,12 +11,13 @@ export default function Header() {
   const { isAuth, user } = useUserStore();
 
   return (
-    <header className="bg-white text-black px-10 py-6 flex justify-between items-center border-b-1 border-b-solid border-b-black">
-      <Logo />
-
-      <div className="flex items-center gap-3">
-        {user?.role === "admin" && <AdminButton />}
-        {isAuth ? <ProfileButton /> : <> <LoginButton /> <RegisterButton /> </>}
+    <header className="w-full bg-white border-b border-black">
+      <div className="max-w-[1280px] mx-auto px-5 flex justify-between items-center py-6">
+        <Logo />
+        <div className="flex items-center gap-3">
+          {user?.role === "admin" && <AdminButton />}
+          {isAuth ? <ProfileButton /> : <> <LoginButton /> <RegisterButton label="Регистрация" /> </>}
+        </div>
       </div>
     </header>
   );
