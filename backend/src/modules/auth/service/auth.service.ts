@@ -1,25 +1,51 @@
-import { ConflictException, Injectable } from '@nestjs/common';
-import { RegisterDto } from '../dto/registerDto';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { LoginDto, RegisterDto } from '../dto/auth.dto';
 import { PrismaService } from 'src/prisma/service/prisma.service';
+import { UsersService } from 'src/modules/users/service/users.service';
+import { JwtService } from '@nestjs/jwt';
+import { LoginResponse, RegisterResponse } from '../responses/auth.response';
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly prisma: PrismaService
+    private readonly prisma: PrismaService,
+    private readonly usersService: UsersService,
+    private readonly jwtSerice: JwtService
   ) { }
-  async register(dto: RegisterDto) {
+
+  async register(dto: RegisterDto): Promise<RegisterResponse> {
     try {
-      const existing = await this.prisma.user.findFirst({
-        where: {
-          OR: [{ email: dto.email }, { username: dto.username }]
-        }
+      const user = await this.usersService.createUser(dto);
+      const payload = { uuid: user.user.uuid };
+      const token = this.jwtSerice.sign(payload);
+
+      return { user: user.user, token: token }
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async login(dto: LoginDto): Promise<LoginResponse> {
+    try {
+      const user = await this.prisma.user.findFirst({
+        where: { email: dto.email }
       })
 
-      if (existing) throw new ConflictException("Username or email is already exists");
+      if (!user) throw new NotFoundException("User not found");
 
+      const isPasswordValid = bcrypt.compare(dto.password, user.password);
 
-    } catch {
+      if (!isPasswordValid) throw new BadRequestException("Invalid password");
 
+      const { password, ...userWithoutPassword } = user;
+
+      const payload = { uuid: user.uuid };
+      const token = this.jwtSerice.sign(payload);
+
+      return { user: userWithoutPassword, token: token }
+    } catch (err) {
+      throw err;
     }
   }
 }
