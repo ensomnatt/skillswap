@@ -13,7 +13,7 @@ export default function Input({ type, placeholder, className, error, value, onCh
       <input
         type={type}
         placeholder={placeholder}
-        value={value}
+        value={value ?? ""}
         onChange={onChange}
         className={`w-full h-[50] p-[12] border
           ${error ? "border-red-500" : "border-black"}

@@ -1,3 +1,5 @@
+"use client";
+
 import NameInput from "@/features/NameInput";
 import EmailInput from "@/features/EmailInput";
 import PasswordInput from "@/features/PasswordInput";
@@ -9,9 +11,9 @@ export default function RegisterInputs() {
   return (
     <div className="w-full flex flex-col justify-center items-center gap-[20]">
       <NameInput
-        value={form.name}
-        onChange={(e) => setField("name", e.target.value)}
-        error={errors.name}
+        value={form.username}
+        onChange={(e) => setField("username", e.target.value)}
+        error={errors.username}
       />
       <EmailInput
         value={form.email}

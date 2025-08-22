@@ -1,12 +1,14 @@
 export interface RegisterForm {
-  name: string;
+  username: string;
   email: string;
   password: string;
   repeatPassword: string;
 }
 
+export interface RegisterFormApi extends Omit<RegisterForm, "repeatPassword"> { }
+
 export type Errors = {
-  name: boolean;
+  username: boolean;
   email: boolean;
   password: boolean;
   repeatPassword: boolean;
