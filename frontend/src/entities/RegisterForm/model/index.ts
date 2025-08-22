@@ -21,7 +21,7 @@ export const useRegisterFormStore = create<RegisterFormStore>((set, get) => ({
     const newErrors: Errors = {
       username: !form.username,
       email: !form.email.includes("@"),
-      password: form.email.length < 8,
+      password: form.password.length < 8,
       repeatPassword: form.password !== form.repeatPassword,
     };
     set({ errors: newErrors });

@@ -20,7 +20,7 @@ export const useLoginFormStore = create<LoginFormStore>((set, get) => ({
     const form = get().form;
     const newErrors: Errors = {
       email: !form.email.includes("@"),
-      password: form.email.length < 8,
+      password: form.password.length < 8,
     };
     set({ errors: newErrors });
     return Object.values(newErrors).every((e) => !e);
