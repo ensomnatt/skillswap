@@ -2,7 +2,7 @@ import { UserRole } from "./enums";
 
 export interface User {
   email: string;
-  nickname: string;
+  username: string;
   role: UserRole;
   tokens: number;
 }
