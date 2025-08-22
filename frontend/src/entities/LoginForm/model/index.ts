@@ -1,16 +1,16 @@
 import { create } from "zustand";
-import { Errors, RegisterForm } from "./types";
+import { Errors, LoginForm } from "./types";
 import { INITIAL_ERRORS, INITIAL_FORM } from "../consts";
 
-interface RegisterFormStore {
-  form: RegisterForm;
+interface LoginFormStore {
+  form: LoginForm;
   errors: Errors;
-  setField: (field: keyof RegisterForm, value: string) => void;
+  setField: (field: keyof LoginForm, value: string) => void;
   validate: () => boolean;
   reset: () => void;
 }
 
-export const useRegisterFormStore = create<RegisterFormStore>((set, get) => ({
+export const useLoginFormStore = create<LoginFormStore>((set, get) => ({
   form: INITIAL_FORM,
   errors: INITIAL_ERRORS,
 
@@ -19,10 +19,8 @@ export const useRegisterFormStore = create<RegisterFormStore>((set, get) => ({
   validate: () => {
     const form = get().form;
     const newErrors: Errors = {
-      username: !form.username,
       email: !form.email.includes("@"),
       password: form.email.length < 8,
-      repeatPassword: form.password !== form.repeatPassword,
     };
     set({ errors: newErrors });
     return Object.values(newErrors).every((e) => !e);
