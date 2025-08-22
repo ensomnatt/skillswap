@@ -1,0 +1,13 @@
+export interface RegisterForm {
+  name: string;
+  email: string;
+  password: string;
+  repeatPassword: string;
+}
+
+export type Errors = {
+  name: boolean;
+  email: boolean;
+  password: boolean;
+  repeatPassword: boolean;
+}

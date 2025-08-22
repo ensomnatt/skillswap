@@ -1,7 +1,5 @@
-import { InputType } from "@/shared/types/InputType";
-
 type Props = {
-  type: InputType;
+  type: string;
   placeholder: string;
   className?: string;
   error?: string;

@@ -1,5 +1,4 @@
 import Input from "@/shared/ui/Input";
-import { InputType } from "@/shared/types/InputType";
 import { ERROR_STRING } from "../consts";
 
 type Props = {
@@ -8,14 +7,14 @@ type Props = {
   error: boolean;
 }
 
-export default function NameInput({ value, onChange, error }: Props) {
+export default function RepeatPasswordInput({ value, onChange, error }: Props) {
   if (error) {
     return (
-      <Input type={InputType.TEXT} placeholder="Повторите пароль" value={value} onChange={onChange} error={ERROR_STRING} />
+      <Input type="password" placeholder="Повторите пароль" value={value} onChange={onChange} error={ERROR_STRING} />
     );
   }
 
   return (
-    <Input type={InputType.TEXT} placeholder="Повторите пароль" value={value} onChange={onChange} />
+    <Input type="password" placeholder="Повторите пароль" value={value} onChange={onChange} />
   );
 }

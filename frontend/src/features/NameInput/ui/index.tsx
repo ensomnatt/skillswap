@@ -1,5 +1,4 @@
 import Input from "@/shared/ui/Input";
-import { InputType } from "@/shared/types/InputType";
 import { ERROR_STRING } from "../consts";
 
 type Props = {
@@ -11,11 +10,11 @@ type Props = {
 export default function NameInput({ value, onChange, error }: Props) {
   if (error) {
     return (
-      <Input type={InputType.TEXT} placeholder="Имя" value={value} onChange={onChange} error={ERROR_STRING} />
+      <Input type="text" placeholder="Имя" value={value} onChange={onChange} error={ERROR_STRING} />
     );
   }
 
   return (
-    <Input type={InputType.TEXT} placeholder="Имя" value={value} onChange={onChange} />
+    <Input type="text" placeholder="Имя" value={value} onChange={onChange} />
   );
 }
