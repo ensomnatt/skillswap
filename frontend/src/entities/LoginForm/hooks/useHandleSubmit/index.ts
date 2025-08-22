@@ -1,26 +1,26 @@
+"use client";
+
 import { useUserStore } from "@/entities/User";
-import { useRegisterFormStore } from "../../model"
+import { useLoginFormStore } from "../../model"
 import { useRouter } from "next/navigation";
-import { registerUser } from "../../api";
+import { loginUser } from "../../api";
 
 export const useHandleSubmit = () => {
-  const { form, validate, reset } = useRegisterFormStore();
+  const { form, validate, reset } = useLoginFormStore();
   const { login } = useUserStore();
   const router = useRouter();
 
   const handleSubmit = async () => {
     if (!validate()) return;
 
-    const { repeatPassword, ...dataToSend } = form;
-
     try {
-      const user = await registerUser(dataToSend);
+      const user = await loginUser(form);
       login(user);
 
       reset();
       router.replace("/dashboard");
     } catch (err: any) {
-      console.error(`ошибка при регистрации: ${err.message}`);
+      console.error(`ошибка при входе: ${err.message}`);
     }
 
     reset();
