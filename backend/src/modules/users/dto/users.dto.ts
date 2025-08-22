@@ -3,3 +3,9 @@ export class CreateUserDto {
   email: string;
   password: string;
 }
+
+export class RequestWithCookiesDto {
+  user: {
+    uuid: string
+  }
+}

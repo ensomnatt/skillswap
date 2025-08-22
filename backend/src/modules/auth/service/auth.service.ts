@@ -5,6 +5,7 @@ import { UsersService } from 'src/modules/users/service/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { LoginResponse, RegisterResponse } from '../responses/auth.response';
 import * as bcrypt from "bcrypt";
+import { Response } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -14,19 +15,26 @@ export class AuthService {
     private readonly jwtSerice: JwtService
   ) { }
 
-  async register(dto: RegisterDto): Promise<RegisterResponse> {
+  async register(dto: RegisterDto, res: Response): Promise<RegisterResponse> {
     try {
       const user = await this.usersService.createUser(dto);
       const payload = { uuid: user.user.uuid };
       const token = this.jwtSerice.sign(payload);
 
-      return { user: user.user, token: token }
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24,
+      });
+
+      return { user: user.user }
     } catch (err) {
       throw err;
     }
   }
 
-  async login(dto: LoginDto): Promise<LoginResponse> {
+  async login(dto: LoginDto, res: Response): Promise<LoginResponse> {
     try {
       const user = await this.prisma.user.findFirst({
         where: { email: dto.email }
@@ -43,7 +51,14 @@ export class AuthService {
       const payload = { uuid: user.uuid };
       const token = this.jwtSerice.sign(payload);
 
-      return { user: userWithoutPassword, token: token }
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        maxAge: 1000 * 60 * 60 * 24,
+      });
+
+      return { user: userWithoutPassword }
     } catch (err) {
       throw err;
     }

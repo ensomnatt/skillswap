@@ -3,7 +3,8 @@ import { CreateUserDto } from '../dto/users.dto';
 import { PrismaService } from 'src/prisma/service/prisma.service';
 import * as bcrypt from "bcrypt";
 import { BCRYPT_SALT } from 'src/common/constants';
-import { CreateUserResponse } from '../responses/users.response';
+import { CreateUserResponse, MeResponse } from '../responses/users.response';
+import { Request } from 'express';
 
 @Injectable()
 export class UsersService {
@@ -38,5 +39,15 @@ export class UsersService {
     } catch (err) {
       throw err;
     }
+  }
+
+  async me(uuid: string): Promise<MeResponse> {
+    const user = await this.prisma.user.findFirst({
+      where: { uuid }
+    })
+
+    const { password, ...userWithoutPassword } = user;
+
+    return { user: userWithoutPassword }
   }
 }
