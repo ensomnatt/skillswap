@@ -1,8 +1,10 @@
+"use client";
+
+import { useUserStore } from "@/entities/User";
+
 export default function UserStats() {
+  const { user } = useUserStore();
   return (
-    <div className="flex flex-col gap-[20]">
-      <h1 className="text-lg">Баланс: 0 токенов</h1>
-      <h1 className="text-lg">Стаж: 2 года</h1>
-    </div>
+    <h1 className="text-lg">Баланс: {user?.tokens || 0} токенов</h1>
   );
 }
