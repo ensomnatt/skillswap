@@ -6,6 +6,7 @@ import ProfileButton from "@/features/ProfileButton";
 import LoginButton from "@/features/LoginButton";
 import RegisterButton from "@/features/RegisterButton";
 import Logo from "@/features/Logo";
+import SkillsButton from "@/features/SkillsButton";
 
 export default function Header() {
   const { isAuth, user } = useUserStore();
@@ -16,7 +17,7 @@ export default function Header() {
         <Logo />
         <div className="flex items-center gap-3">
           {user?.role === "admin" && <AdminButton />}
-          {isAuth ? <ProfileButton /> : <> <LoginButton /> <RegisterButton label="Регистрация" /> </>}
+          {isAuth ? <> <SkillsButton /> <ProfileButton /> </> : <> <LoginButton /> <RegisterButton label="Регистрация" /> </>}
         </div>
       </div>
     </header>

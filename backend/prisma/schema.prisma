@@ -17,3 +17,8 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model Skill {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+}
