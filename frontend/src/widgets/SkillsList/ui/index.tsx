@@ -1,14 +1,9 @@
 "use client";
-import { useSkillsStore } from "@/entities/Skills"
+import { useFilteredSkills } from "@/entities/Skills";
 import Skill from "@/widgets/Skill/ui";
 
 export default function SkillsList() {
-  const { skills, search } = useSkillsStore();
-
-  const filteredSkills = skills.filter((skill) =>
-    skill.name.toLowerCase().includes(search.toLowerCase())
-  );
-
+  const filteredSkills = useFilteredSkills();
   return (
     <ul className="w-full p-5">
       {filteredSkills.map((skill) => (

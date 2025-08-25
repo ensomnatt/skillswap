@@ -1,24 +1,16 @@
 import { create } from "zustand";
 import { Skill } from "./types";
-import { fetch } from "../api";
 
 interface SkillsStore {
   skills: Skill[];
+  setSkills: (skills: Skill[]) => void;
   search: string;
   setSearch: (value: string) => void;
-  fetchSkills: () => Promise<void>;
 }
 
 export const useSkillsStore = create<SkillsStore>((set) => ({
   skills: [],
+  setSkills: (skills: Skill[]) => set({ skills: skills }),
   search: "",
   setSearch: (value: string) => set({ search: value }),
-  fetchSkills: async () => {
-    try {
-      const skills = await fetch();
-      set({ skills: skills });
-    } catch (err) {
-      throw new Error(`ошибка при получении навыков с сервера: ${err}`);
-    }
-  }
 }));
