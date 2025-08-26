@@ -6,7 +6,6 @@ interface UserStore {
   isAuth: boolean;
   login: (user: User) => void;
   logout: () => void;
-  setUser: (user: User) => void;
 }
 
 export const useUserStore = createPersistedStore<UserStore>(
@@ -16,6 +15,5 @@ export const useUserStore = createPersistedStore<UserStore>(
     isAuth: false,
     login: (user: User) => set({ user, isAuth: true }),
     logout: () => set({ user: null, isAuth: false }),
-    setUser: (user: User) => set({ user }),
   })
 );
