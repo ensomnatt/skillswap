@@ -15,7 +15,7 @@ export const useHandleSubmit = () => {
 
     try {
       const user = await loginUser(form);
-      login(user);
+      login(user.user);
 
       reset();
       router.replace("/dashboard");

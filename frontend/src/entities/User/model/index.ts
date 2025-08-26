@@ -1,6 +1,5 @@
-import { create } from "zustand";
 import { User } from "./types";
-import { persist } from "zustand/middleware";
+import { createPersistedStore } from "@/shared/helpers/createPersistedStore";
 
 interface UserStore {
   user: User | null;
@@ -9,16 +8,12 @@ interface UserStore {
   logout: () => void;
 }
 
-export const useUserStore = create<UserStore>()(
-  persist(
-    (set) => ({
-      user: null,
-      isAuth: false,
-      login: (user: User) => set({ user, isAuth: true }),
-      logout: () => set({ user: null, isAuth: false }),
-    }),
-    {
-      name: "user-storage",
-    }
-  )
+export const useUserStore = createPersistedStore<UserStore>(
+  "user-storage",
+  (set) => ({
+    user: null,
+    isAuth: false,
+    login: (user: User) => set({ user, isAuth: true }),
+    logout: () => set({ user: null, isAuth: false }),
+  })
 );
