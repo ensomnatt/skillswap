@@ -1,4 +1,4 @@
-export enum DashboardPageId {
-  IN_PROGRESS = 1,
-  COMPLETED = 2,
+export enum DashboardPages {
+  IN_PROGRESS = "IN_PROGRESS",
+  COMPLETED = "COMPLETED",
 }

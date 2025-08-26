@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { DashboardPageId } from "./enums";
+import { DashboardPages } from "./enums";
 
 interface DashboardStore {
-  currentPage: DashboardPageId;
-  setCurrentPage: (id: DashboardPageId) => void;
+  currentPage: DashboardPages;
+  setCurrentPage: (page: DashboardPages) => void;
 }
 
 export const useDashboardStore = create<DashboardStore>((set) => ({
-  currentPage: DashboardPageId.IN_PROGRESS,
-  setCurrentPage: (id: DashboardPageId) => set({ currentPage: id }),
+  currentPage: DashboardPages.IN_PROGRESS,
+  setCurrentPage: (page: DashboardPages) => set({ currentPage: page }),
 }))
