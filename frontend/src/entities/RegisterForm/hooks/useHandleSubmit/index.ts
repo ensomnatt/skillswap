@@ -5,7 +5,7 @@ import { registerUser } from "../../api";
 
 export const useHandleSubmit = () => {
   const { form, validate, reset } = useRegisterFormStore();
-  const { login } = useUserStore();
+  const { login, setUser } = useUserStore();
   const router = useRouter();
 
   const handleSubmit = async () => {
@@ -16,6 +16,7 @@ export const useHandleSubmit = () => {
     try {
       const user = await registerUser(dataToSend);
       login(user);
+      setUser(user);
 
       reset();
       router.replace("/dashboard");
